@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 import { ChatComponent } from './pages/chat/chat.component';
 import { ChatsComponent } from './pages/chats/chats.component';
 import { FallbackComponent } from './pages/fallback/fallback.component';
@@ -11,13 +12,16 @@ import { ProfileComponent } from './pages/profile/profile.component';
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: '', component: HomeComponent},
-  {path: 'feed', component: FeedComponent},
+  {
+    path: 'feed',
+    component: FeedComponent,
+    canActivate: [AuthGuard]
+  },
   {path: 'profile', component: ProfileComponent},
   {path: 'profile/:userId', component: ProfileComponent},
   {path: 'chats', component: ChatsComponent},
   {path: 'chat/:userId', component: ChatComponent},
   {path: '**', component: FallbackComponent},
-
 ];
 
 @NgModule({

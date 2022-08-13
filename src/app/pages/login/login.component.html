@@ -1,13 +1,15 @@
 
-<form>
+<form (submit)="login($event)" [formGroup]="form">
   <h1>Sign in</h1>
   <mat-form-field appearance="fill">
     <mat-label>Login</mat-label>
-    <input matInput type="text" placeholder="Email or phone">
+    <input matInput type="text" placeholder="Email" formControlName="login">
+    <mat-error>{{ getError("login") }}</mat-error>
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Password</mat-label>
-    <input matInput [type]="hide ? 'password' : 'text'">
+    <input matInput [type]="hide ? 'password' : 'text'" formControlName='password'>
+    <mat-error>{{ getError("password") }}</mat-error>
     <button  type="button" mat-icon-button matSuffix (click)="hide = !hide">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
